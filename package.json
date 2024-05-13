@@ -7,5 +7,8 @@
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "generate-password-ts": "^1.6.5"
   }
 }
