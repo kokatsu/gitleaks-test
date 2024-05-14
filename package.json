@@ -2,6 +2,10 @@
   "name": "gitleaks-test",
   "module": "src/index.ts",
   "type": "module",
+  "scripts": {
+    "lint": "biome check src",
+    "lint:fix": "biome check src --apply"
+  },
   "devDependencies": {
     "@biomejs/biome": "1.7.3",
     "@types/bun": "latest"
