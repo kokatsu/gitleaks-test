@@ -17,6 +17,8 @@ jobs:
         uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
+      - name: Install dependencies
+        run: bun install
       - name: Make test files
         run: bun run $GITHUB_WORKSPACE/src/index.ts
       - name: Detect leaks
