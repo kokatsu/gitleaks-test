@@ -1,0 +1,29 @@
+name: gitleaks-test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  gitleaks-test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install the gitleaks
+        run: |
+          VERSION=$(curl -s "https://api.github.com/repos/gitleaks/gitleaks/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' | sed 's/^v//')
+          wget "https://github.com/zricethezav/gitleaks/releases/download/${VERSION}/gitleaks_${VERSION}_linux_x64.tar.gz"
+          tar xzvf gitleaks_${VERSION}_linux_x64.tar.gz
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      - name: Make test files
+        run: bun run $GITHUB_WORKSPACE/src/index.ts
+      - name: Detect leaks
+        run: $GITHUB_WORKSPACE/gitleaks detect -s $GITHUB_WORKSPACE -f json -r $GITHUB_WORKSPACE/gitleaks-test-report.json
+      - name: Upload leaks results
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: Gitleaks test results
+          path: $GITHUB_WORKSPACE/gitleaks-test-report.json
