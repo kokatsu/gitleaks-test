@@ -14,6 +14,5 @@ jobs:
         uses: biomejs/setup-biome@v2
         with:
           version: latest
-          working-dir: src
       - name: Run Biome
         run: biome ci .
