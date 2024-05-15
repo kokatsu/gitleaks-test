@@ -1,17 +1,22 @@
 import generator from 'generate-password-ts';
 
-const password = generator.generate({
+const PASSWORD_COUNTS = 100;
+
+const passwords = generator.generateMultiple(PASSWORD_COUNTS, {
   length: 10,
   numbers: true,
 });
 
 const tsPath = './test/test.ts';
-const tsText = `const password = '${password}';`;
+const tsText = passwords
+  .map((password, index) => `const password${index + 1} = '${password}';`)
+  .join('\n');
 
 const jsonPath = './test/test.json';
-const jsonObject = {
-  password: password,
-};
+const jsonObject: { [key: string]: string } = {};
+passwords.forEach((password, index) => {
+  jsonObject[`password${index + 1}`] = password;
+});
 const jsonText = JSON.stringify(jsonObject);
 
 await Bun.write(tsPath, tsText);
