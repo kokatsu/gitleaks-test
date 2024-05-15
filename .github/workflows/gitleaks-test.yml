@@ -12,7 +12,7 @@ jobs:
         run: |
           VERSION=$(curl -s "https://api.github.com/repos/gitleaks/gitleaks/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' | sed 's/^v//')
           wget "https://github.com/gitleaks/gitleaks/releases/download/v${VERSION}/gitleaks_${VERSION}_linux_x64.tar.gz"
-          tar xzvf gitleaks_${VERSION}_linux_x64.tar.gz
+          tar xzvf gitleaks_${VERSION}_linux_x64.tar.gz -C /usr/local/bin
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
         with:
@@ -20,12 +20,12 @@ jobs:
       - name: Install dependencies
         run: bun install
       - name: Make test files
-        run: bun run $GITHUB_WORKSPACE/src/index.ts
+        run: bun run src/index.ts
       - name: Detect leaks
-        run: $GITHUB_WORKSPACE/gitleaks detect -v --no-git -s $GITHUB_WORKSPACE -f json -r $GITHUB_WORKSPACE/gitleaks-test-report.json
+        run: gitleaks detect -v --no-git -s . -f json -r gitleaks-test-report.json
       - name: Upload leaks results
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
           name: Gitleaks test results
-          path: $GITHUB_WORKSPACE/gitleaks-test-report.json
+          path: gitleaks-test-report.json
