@@ -17,7 +17,7 @@ const jsonObject: { [key: string]: string } = {};
 passwords.forEach((password, index) => {
   jsonObject[`password${index + 1}`] = password;
 });
-const jsonText = JSON.stringify(jsonObject);
+const jsonText = JSON.stringify(jsonObject, null, 2);
 
 await Bun.write(tsPath, tsText);
 await Bun.write(jsonPath, jsonText);
