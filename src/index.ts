@@ -7,9 +7,14 @@ const passwords = generator.generateMultiple(PASSWORD_COUNTS, {
   numbers: true,
 });
 
-const tsPath = './test/test.ts';
-const tsText = passwords
+const ts1Path = './test/test1.ts';
+const ts1Text = passwords
   .map((password, index) => `const password${index + 1} = '${password}';`)
+  .join('\n');
+
+const ts2Path = './test/test1.ts';
+const ts2Text = passwords
+  .map((password, index) => `const password${index + 1} = "${password}";`)
   .join('\n');
 
 const jsonPath = './test/test.json';
@@ -19,5 +24,6 @@ passwords.forEach((password, index) => {
 });
 const jsonText = JSON.stringify(jsonObject, null, 2);
 
-await Bun.write(tsPath, tsText);
+await Bun.write(ts1Path, ts1Text);
+await Bun.write(ts2Path, ts2Text);
 await Bun.write(jsonPath, jsonText);
