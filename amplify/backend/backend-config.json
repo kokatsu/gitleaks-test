@@ -1,1 +1,62 @@
-{}
+{
+  "auth": {
+    "gitleakstest45299d7d": {
+      "customAuth": false,
+      "dependsOn": [
+        {
+          "attributes": ["Arn", "Name"],
+          "category": "function",
+          "resourceName": "gitleakstest45299d7dPreSignup",
+          "triggerProvider": "Cognito"
+        }
+      ],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": ["SMS"],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [],
+        "socialProviders": ["GOOGLE"],
+        "usernameAttributes": ["EMAIL"],
+        "verificationMechanisms": ["PHONE_NUMBER"]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
+    }
+  },
+  "function": {
+    "gitleakstest45299d7dPreSignup": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_gitleakstest45299d7dPreSignup_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "gitleakstest45299d7dPreSignup"
+        }
+      ]
+    },
+    "AMPLIFY_function_gitleakstest45299d7dPreSignup_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "gitleakstest45299d7dPreSignup"
+        }
+      ]
+    },
+    "AMPLIFY_function_gitleakstest45299d7dPreSignup_secretsPathAmplifyAppId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "gitleakstest45299d7dPreSignup"
+        }
+      ]
+    }
+  }
+}
