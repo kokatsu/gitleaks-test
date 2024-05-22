@@ -1,0 +1,10 @@
+title = "gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Amplify allow list"
+paths = [
+    '''team-provider-info.json'''
+]

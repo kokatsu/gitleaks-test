@@ -1,0 +1,15 @@
+{
+  "trigger": true,
+  "modules": ["email-filter-allowlist"],
+  "parentResource": "gitleakstest45299d7d",
+  "functionName": "gitleakstest45299d7dPreSignup",
+  "resourceName": "gitleakstest45299d7dPreSignup",
+  "parentStack": "auth",
+  "triggerEnvs": "[]",
+  "triggerDir": "/snapshot/amplify-cli/build/node_modules/@aws-amplify/amplify-category-auth/provider-utils/awscloudformation/triggers/PreSignup",
+  "triggerTemplate": "PreSignup.json.ejs",
+  "triggerEventPath": "PreSignup.event.json",
+  "roleName": "gitleakstest45299d7dPreSignup",
+  "skipEdit": true,
+  "secretNames": ["MAILALLOWLIST"]
+}
