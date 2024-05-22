@@ -4,7 +4,11 @@
     "enabled": true
   },
   "files": {
-    "ignore": ["dist/**/*.js"]
+    "ignore": [
+      "dist/**/*.js",
+      "amplify/backend/function/**/src/*.js",
+      "amplify/#current-cloud-backend/function/**/src/*.js"
+    ]
   },
   "linter": {
     "enabled": true,
