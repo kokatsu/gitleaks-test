@@ -25,7 +25,7 @@ jobs:
         run: gitleaks detect -v --no-git -s . -f sarif -r gitleaks-test-report.sarif
       - name: Upload leaks results
         if: ${{ always() }}
-        uses: actions/upload-artifact@v4
+        uses: github/codeql-action/upload-sarif@v3
         with:
-          name: Gitleaks test results
-          path: gitleaks-test-report.sarif
+          sarif_file: gitleaks-test-report.sarif
+          category: gitleaks-test-result
