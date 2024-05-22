@@ -22,10 +22,10 @@ jobs:
       - name: Make test files
         run: bun run src/index.ts
       - name: Detect leaks
-        run: gitleaks detect -v --no-git -s . -f json -r gitleaks-test-report.json
+        run: gitleaks detect -v --no-git -s . -f sarif -r gitleaks-test-report.sarif
       - name: Upload leaks results
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
           name: Gitleaks test results
-          path: gitleaks-test-report.json
+          path: gitleaks-test-report.sarif
