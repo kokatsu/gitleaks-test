@@ -6,6 +6,10 @@ on:
 jobs:
   gitleaks-test:
     runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - name: Install the gitleaks
@@ -28,4 +32,3 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: gitleaks-test-report.sarif
-          category: gitleaks-test-result
