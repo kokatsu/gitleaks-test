@@ -9,7 +9,8 @@
     "preview": "bunx --bun vite preview",
     "lint": "biome check .",
     "lint:fix": "biome check . --apply",
-    "detect": "gitleaks detect -v --no-git -s . -f json -r gitleaks-report.json"
+    "detect": "gitleaks detect -v -s . -f json -r gitleaks-report.json",
+    "detect:no-git": "gitleaks detect -v --no-git -s . -f json -r gitleaks-report.json"
   },
   "dependencies": {
     "generate-password-ts": "^1.6.5",
