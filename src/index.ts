@@ -12,7 +12,7 @@ const ts1Text = passwords
   .map((password, index) => `const password${index + 1} = '${password}';`)
   .join('\n');
 
-const ts2Path = './test/test1.ts';
+const ts2Path = './test/test2.ts';
 const ts2Text = passwords
   .map((password, index) => `const password${index + 1} = "${password}";`)
   .join('\n');
